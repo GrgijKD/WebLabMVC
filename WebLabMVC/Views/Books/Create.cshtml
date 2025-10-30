@@ -1,0 +1,103 @@
+﻿@model WebLabMVC.Models.Book
+
+@{
+    ViewData["Title"] = "Додавання книги";
+}
+
+<h1>Додати книгу</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">Назва</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Жанр (можна декілька)</label>
+                <select asp-for="Genres" class="form-control" asp-items="ViewBag.Genres" multiple="multiple"></select>
+                <a class="btn btn-sm btn-primary mt-1" href="/Genres/Create">Додати жанр</a>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Автор (можна декілька)</label>
+                <select asp-for="Authors" class="form-control" asp-items="ViewBag.Authors" multiple="multiple"></select>
+                <a class="btn btn-sm btn-primary mt-1" href="/Authors/Create">Додати автора</a>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PublisherId" class="control-label">Видавництво</label>
+                <select asp-for="PublisherId" class="form-control" asp-items="ViewBag.Publishers"></select>
+                <a class="btn btn-sm btn-primary mt-1" href="/Publishers/Create">Додати видавництво</a>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label d-block">Обкладинка (зображення)</label>
+                <label for="CoverFile" class="btn btn-outline-primary">Вибрати файл</label>
+                <input asp-for="CoverUrl" id="CoverFile" type="file" name="CoverFile" style="display:none;" />
+                <span id="file-name" class="ms-2 text-muted">Файл не вибрано</span>
+                <span asp-validation-for="CoverUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Ціна</label>
+                <input asp-for="Price" id="PriceInput" class="form-control"
+                       type="text"
+                       placeholder="9.99" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Додати" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Books" asp-action="Index" class="btn btn-secondary mt-2">Повернутися до списку книг</a>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        $("#CoverFile").change(function () {
+            const file = this.files[0];
+            $("#file-name").text(file ? file.name : "Файл не вибрано");
+        });
+
+        $("#PriceInput").keypress(function (e) {
+            var char = String.fromCharCode(e.which);
+            var value = $(this).val();
+
+            if (char.match(/[0-9]/)) {
+                return true;
+            }
+
+            if ((char === '.' || char === ',') && value.indexOf('.') === -1 && value.indexOf(',') === -1 && value.length > 0) {
+                return true;
+            }
+
+            return false;
+        });
+
+        $(document).ready(function () {
+            $.validator.addMethod("pricevalid", function (value, element) {
+                if (!value) return false;
+                var val = value.replace(',', '.');
+                var price = parseFloat(val);
+                return !isNaN(price) && price >= 0.01 && price <= 999999.99;
+            }, "Ціна має бути від 0.01 до 999999.99");
+
+            $("#PriceInput").rules("add", {
+                required: true,
+                pricevalid: true
+            });
+        });
+    </script>
+}

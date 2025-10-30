@@ -1,0 +1,53 @@
+﻿@model WebLabMVC.Models.Genre
+
+@{
+    ViewData["Title"] = "Деталі жанру";
+}
+
+<h1>Деталі жанру</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">Назва жанру</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+
+            <dt class="col-sm-4">Автори</dt>
+            <dd class="col-sm-8">
+                @if (Model.Authors != null && Model.Authors.Any())
+                {
+                    @string.Join(", ", Model.Authors.Select(a => a.FullName))
+                }
+                else
+                {
+                    <span>Не вказано</span>
+                }
+            </dd>
+
+            <dt class="col-sm-4">Книги</dt>
+            <dd class="col-sm-8">
+                @if (Model.Books != null && Model.Books.Any())
+                {
+                    foreach (var book in Model.Books)
+                    {
+                        <div>
+                            <a asp-controller="Books" asp-action="Details" asp-route-id="@book.Id">
+                                @book.Title
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <span>Не вказано</span>
+                }
+            </dd>
+        </dl>
+
+        <div class="form-group mt-3">
+            <a asp-controller="Genres" asp-action="Index" class="btn btn-secondary">Повернутися до списку жанрів</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger">Видалити</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model WebLabMVC.Models.Shop
+
+@{
+    ViewData["Title"] = "Додавання магазину";
+}
+
+<h1>Додати магазин</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Назва</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">Адреса</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Latitude" class="control-label">Широта</label>
+                <input asp-for="Latitude" class="form-control coordinates-input" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Longitude" class="control-label">Довгота</label>
+                <input asp-for="Longitude" class="form-control coordinates-input" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Додати" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><a asp-controller="Shops" asp-action="Index" class="btn btn-secondary mt-2">Повернутися до списку магазинів</a></a>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        $(".coordinates-input").keypress(function (e) {
+            var char = String.fromCharCode(e.which);
+            var value = $(this).val();
+
+            if (char.match(/[0-9]/)) {
+                return true;
+            }
+
+            if ((char === '.' || char === ',') && value.indexOf('.') === -1 && value.indexOf(',') === -1 && value.length > 0) {
+                return true;
+            }
+
+            return false;
+        });
+    </script>
+}

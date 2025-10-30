@@ -1,0 +1,64 @@
+﻿@model WebLabMVC.Models.Book
+
+@{
+    ViewData["Title"] = "Деталі книги";
+}
+
+<h1>Деталі книги</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">Назва</dt>
+            <dd class="col-sm-8">@Model.Title</dd>
+
+            <dt class="col-sm-4">Жанр</dt>
+            <dd class="col-sm-8">
+                @if (Model.Genres != null && Model.Genres.Any())
+                {
+                    @string.Join(", ", Model.Genres.Select(g => g.Name))
+                }
+                else
+                {
+                    <span>Не вказано</span>
+                }
+            </dd>
+
+            <dt class="col-sm-4">Автор</dt>
+            <dd class="col-sm-8">
+                @if (Model.Authors != null && Model.Authors.Any())
+                {
+                    @string.Join(", ", Model.Authors.Select(a => a.FullName))
+                }
+                else
+                {
+                    <span>Не вказано</span>
+                }
+            </dd>
+
+            <dt class="col-sm-4">Видавництво</dt>
+            <dd class="col-sm-8">@((Model.Publisher != null) ? Model.Publisher.Name : "Не вказано")</dd>
+
+            <dt class="col-sm-4">Обкладинка</dt>
+            <dd class="col-sm-8">
+                @if (!string.IsNullOrEmpty(Model.CoverUrl))
+                {
+                    <img src="@Model.CoverUrl" alt="Обкладинка" style="max-width:200px;" />
+                }
+                else
+                {
+                    <span>Не вказано</span>
+                }
+            </dd>
+
+            <dt class="col-sm-4">Ціна</dt>
+            <dd class="col-sm-8">@Model.Price</dd>
+        </dl>
+
+        <div class="form-group mt-3">
+            <a asp-controller="Books" asp-action="Index" class="btn btn-secondary">Повернутися до списку книг</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger">Видалити</a>
+        </div>
+    </div>
+</div>

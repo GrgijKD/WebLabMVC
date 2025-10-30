@@ -1,0 +1,53 @@
+﻿@model WebLabMVC.Models.Publisher
+
+@{
+    ViewData["Title"] = "Деталі видавництва";
+}
+
+<h1>Деталі видавництва</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-4">Назва видавництва</dt>
+            <dd class="col-sm-8">@Model.Name</dd>
+
+            <dt class="col-sm-4">Країна</dt>
+            <dd class="col-sm-8">
+                @if (!string.IsNullOrEmpty(Model.Country))
+                {
+                    @Model.Country
+                }
+                else
+                {
+                    <span>Не вказано</span>
+                }
+            </dd>
+
+            <dt class="col-sm-4">Книги</dt>
+            <dd class="col-sm-8">
+                @if (Model.Books != null && Model.Books.Any())
+                {
+                    foreach (var book in Model.Books)
+                    {
+                        <div>
+                            <a asp-controller="Books" asp-action="Details" asp-route-id="@book.Id">
+                                @book.Title
+                            </a>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <span>Не вказано</span>
+                }
+            </dd>
+        </dl>
+
+        <div class="form-group mt-3">
+            <a asp-controller="Publishers" asp-action="Index" class="btn btn-secondary">Повернутися до списку видавництв</a>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати</a>
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger">Видалити</a>
+        </div>
+    </div>
+</div>

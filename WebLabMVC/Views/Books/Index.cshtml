@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebLabMVC.Models.Book>
+
+@{
+    ViewData["Title"] = "Книги";
+}
+
+<h1>Книги</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Додати книгу</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Назва</th>
+            <th>Жанр</th>
+            <th>Автор</th>
+            <th>Видавництво</th>
+            <th>Обкладинка</th>
+            <th>Ціна</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+
+                <td>
+                    @if (item.Genres != null && item.Genres.Any())
+                    {
+                        @string.Join(", ", item.Genres.Select(g => g.Name))
+                    }
+                    else
+                    {
+                        <span>Не вказано</span>
+                    }
+                </td>
+
+                <td>
+                    @if (item.Authors != null && item.Authors.Any())
+                    {
+                        @string.Join(", ", item.Authors.Select(a => a.FullName))
+                    }
+                    else
+                    {
+                        <span>Не вказано</span>
+                    }
+                </td>
+
+                <td>@(item.Publisher != null ? item.Publisher.Name : "Не вказано")</td>
+
+                <td>
+                    @if (!string.IsNullOrEmpty(item.CoverUrl))
+                    {
+                        <img src="@item.CoverUrl" alt="Обкладинка" style="max-width:100px;" />
+                    }
+                    else
+                    {
+                        <span>Не вказано</span>
+                    }
+                </td>
+
+                <td>@item.Price</td>
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Детальніше</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Редагувати</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
