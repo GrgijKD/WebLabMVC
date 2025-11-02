@@ -33,7 +33,7 @@ namespace WebLabMVC.Migrations
 
                     b.HasIndex("BooksId");
 
-                    b.ToTable("AuthorBook");
+                    b.ToTable("BookAuthor", (string)null);
                 });
 
             modelBuilder.Entity("AuthorGenre", b =>
@@ -48,7 +48,7 @@ namespace WebLabMVC.Migrations
 
                     b.HasIndex("GenresId");
 
-                    b.ToTable("AuthorGenre");
+                    b.ToTable("AuthorGenre", (string)null);
                 });
 
             modelBuilder.Entity("BookGenre", b =>
@@ -63,7 +63,7 @@ namespace WebLabMVC.Migrations
 
                     b.HasIndex("GenresId");
 
-                    b.ToTable("BookGenre");
+                    b.ToTable("BookGenre", (string)null);
                 });
 
             modelBuilder.Entity("BookShop", b =>
@@ -78,7 +78,7 @@ namespace WebLabMVC.Migrations
 
                     b.HasIndex("ShopsId");
 
-                    b.ToTable("BookShop");
+                    b.ToTable("BookShop", (string)null);
                 });
 
             modelBuilder.Entity("WebLabMVC.Models.Author", b =>
@@ -233,7 +233,7 @@ namespace WebLabMVC.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "admin@weblab.com",
+                            Email = "admin@bookshop.com",
                             FullName = "Administrator1",
                             IsAdmin = true,
                             IsClient = false,

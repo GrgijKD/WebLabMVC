@@ -10,7 +10,7 @@ namespace WebLabMVC.Models
         [Required(ErrorMessage = "Заповніть це поле")]
         public required string Name { get; set; }
 
-        public ICollection<Book> Books { get; set; } = [];
-        public ICollection<Author> Authors { get; set; } = [];
+        public ICollection<Book> Books { get; set; } = new List<Book>();
+        public ICollection<Author> Authors { get; set; } = new List<Author>();
     }
 }

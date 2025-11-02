@@ -4,28 +4,21 @@
     ViewData["Title"] = "Деталі автора";
 }
 
-<h1>Деталі автора</h1>
+<div class="container mt-5">
+    <section class="text-center mb-5">
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-4">
+                <h1 class="display-5 fw-bold mb-4">@Model.FullName</h1>
+                <p class="fs-5 text-muted">Країна: @(string.IsNullOrEmpty(Model.Country) ? "Не вказано" : Model.Country)</p>
+            </div>
+        </div>
+    </section>
 
-<div class="row">
-    <div class="col-md-6">
-        <dl class="row">
-            <dt class="col-sm-4">Ім’я</dt>
-            <dd class="col-sm-8">@Model.FullName</dd>
-
-            <dt class="col-sm-4">Країна</dt>
-            <dd class="col-sm-8">
-                @if (!string.IsNullOrEmpty(Model.Country))
-                {
-                    @Model.Country
-                }
-                else
-                {
-                    <span>Не вказано</span>
-                }
-            </dd>
-
-            <dt class="col-sm-4">Жанри</dt>
-            <dd class="col-sm-8">
+    <section id="details" class="mb-5">
+        <h2 class="fw-bold mb-4">Інформація про автора</h2>
+        <ul class="list-group list-group-flush fs-5">
+            <li class="list-group-item">
+                <strong>Жанри:</strong>
                 @if (Model.Genres != null && Model.Genres.Any())
                 {
                     @string.Join(", ", Model.Genres.Select(g => g.Name))
@@ -34,32 +27,25 @@
                 {
                     <span>Не вказано</span>
                 }
-            </dd>
+            </li>
 
-            <dt class="col-sm-4">Книги</dt>
-            <dd class="col-sm-8">
+            <li class="list-group-item">
+                <strong>Книги автора:</strong>
                 @if (Model.Books != null && Model.Books.Any())
                 {
-                    foreach (var book in Model.Books)
-                    {
-                        <div>
-                            <a asp-controller="Books" asp-action="Details" asp-route-id="@book.Id">
-                                @book.Title
-                            </a>
-                        </div>
-                    }
+                    @string.Join(", ", Model.Books.Select(b => b.Title))
                 }
                 else
                 {
                     <span>Не вказано</span>
                 }
-            </dd>
-        </dl>
+            </li>
+        </ul>
+    </section>
 
-        <div class="form-group mt-3">
-            <a asp-controller="Authors" asp-action="Index" class="btn btn-secondary">Повернутися до списку авторів</a>
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати</a>
-            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger">Видалити</a>
-        </div>
+    <div class="text-center my-5">
+        <a asp-controller="Authors" asp-action="Index" class="btn btn-secondary me-2">← Назад</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary me-2">Редагувати</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Видалити</a>
     </div>
 </div>

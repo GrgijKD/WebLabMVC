@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\controllers\\shopsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\controllers\\shopsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\controllers\\publishersapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\controllers\\publishersapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\controllers\\genresapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\controllers\\genresapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ShopsApiController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\ShopsApiController.cs",
+              "RelativeDocumentMoniker": "WebLabMVC\\Controllers\\ShopsApiController.cs",
+              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\ShopsApiController.cs",
+              "RelativeToolTip": "WebLabMVC\\Controllers\\ShopsApiController.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAhwFAAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T15:46:35.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PublishersApiController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\PublishersApiController.cs",
+              "RelativeDocumentMoniker": "WebLabMVC\\Controllers\\PublishersApiController.cs",
+              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\PublishersApiController.cs",
+              "RelativeToolTip": "WebLabMVC\\Controllers\\PublishersApiController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAhwEUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T15:45:59.771Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GenresApiController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\GenresApiController.cs",
+              "RelativeDocumentMoniker": "WebLabMVC\\Controllers\\GenresApiController.cs",
+              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\GenresApiController.cs",
+              "RelativeToolTip": "WebLabMVC\\Controllers\\GenresApiController.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAhwEcAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T15:45:20.629Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

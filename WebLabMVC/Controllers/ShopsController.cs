@@ -24,16 +24,14 @@ namespace WebLabMVC.Controllers
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var shop = await _context.Shops
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(s => s.Books)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
             if (shop == null)
-            {
                 return NotFound();
-            }
 
             return View(shop);
         }

@@ -27,17 +27,13 @@ namespace WebLabMVC.Controllers
         // GET: Publishers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var publisher = await _context.Publishers
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (publisher == null)
-            {
-                return NotFound();
-            }
+                .Include(p => p.Books)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (publisher == null) return NotFound();
 
             return View(publisher);
         }

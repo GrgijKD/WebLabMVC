@@ -20,14 +20,16 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label">Жанр (можна декілька)</label>
+                <label asp-for="Genres" class="control-label">Жанр (можна декілька)</label>
                 <select asp-for="Genres" class="form-control" asp-items="ViewBag.Genres" multiple="multiple"></select>
+                <span asp-validation-for="Genres" class="text-danger"></span>
                 <a class="btn btn-sm btn-primary mt-1" href="/Genres/Create">Додати жанр</a>
             </div>
 
             <div class="form-group">
-                <label class="control-label">Автор (можна декілька)</label>
+                <label asp-for="Authors" class="control-label">Автор (можна декілька)</label>
                 <select asp-for="Authors" class="form-control" asp-items="ViewBag.Authors" multiple="multiple"></select>
+                <span asp-validation-for="Authors" class="text-danger"></span>
                 <a class="btn btn-sm btn-primary mt-1" href="/Authors/Create">Додати автора</a>
             </div>
 
@@ -38,7 +40,7 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label d-block">Обкладинка (зображення)</label>
+                <label asp-for="CoverUrl" class="control-label d-block">Обкладинка (зображення)</label>
                 <label for="CoverFile" class="btn btn-outline-primary">Вибрати файл</label>
                 <input asp-for="CoverUrl" id="CoverFile" type="file" name="CoverFile" style="display:none;" />
                 <span id="file-name" class="ms-2 text-muted">Файл не вибрано</span>

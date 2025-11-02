@@ -4,50 +4,36 @@
     ViewData["Title"] = "Деталі магазину";
 }
 
-<h1>Деталі магазину</h1>
-
-<div class="row">
-    <div class="col-md-6">
-        <dl class="row">
-            <dt class="col-sm-4">Назва магазину</dt>
-            <dd class="col-sm-8">@Model.Name</dd>
-
-            <dt class="col-sm-4">Адреса</dt>
-            <dd class="col-sm-8">
-                @if (!string.IsNullOrEmpty(Model.Address))
-                {
-                    @Model.Address
-                }
-                else
-                {
-                    <span>Не вказано</span>
-                }
-            </dd>
-
-            <dt class="col-sm-4">Книги у наявності</dt>
-            <dd class="col-sm-8">
-                @if (Model.Books != null && Model.Books.Any())
-                {
-                    foreach (var book in Model.Books)
-                    {
-                        <div>
-                            <a asp-controller="Books" asp-action="Details" asp-route-id="@book.Id">
-                                @book.Title
-                            </a>
-                        </div>
-                    }
-                }
-                else
-                {
-                    <span>Не вказано</span>
-                }
-            </dd>
-        </dl>
-
-        <div class="form-group mt-3">
-            <a asp-controller="Shops" asp-action="Index" class="btn btn-secondary">Повернутися до списку магазинів</a>
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редагувати</a>
-            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger">Видалити</a>
+<div class="container mt-5">
+    <section class="text-center mb-5">
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-4">
+                <h1 class="display-5 fw-bold mb-4">@Model.Name</h1>
+                <p class="fs-5 text-muted">Адреса: @Model.Address</p>
+            </div>
         </div>
+    </section>
+
+    <section id="details" class="mb-5">
+        <h2 class="fw-bold mb-4">Книги в наявності:</h2>
+        @if (Model.Books != null && Model.Books.Any())
+        {
+            <ul class="list-group list-group-flush fs-5">
+                @foreach (var book in Model.Books)
+                {
+                    <li class="list-group-item">@book.Title</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="text-muted">Немає книг у наявності</p>
+        }
+    </section>
+
+    <div class="text-center my-5">
+        <a asp-controller="Shops" asp-action="Index" class="btn btn-secondary me-2">← Назад</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary me-2">Редагувати</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Видалити</a>
     </div>
 </div>

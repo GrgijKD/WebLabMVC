@@ -39,21 +39,32 @@
             </div>
         </nav>
     </header>
+
+    <div class="fixed-bottom bg-dark text-light text-center py-2 shadow-lg">
+        <span class="me-3">support@bookshop.com</span>
+        <span class="me-3">+380123456789</span>
+        <a href="#" onclick="scrollToTop()" class="btn btn-outline-light btn-sm text-light">↑ Вгору</a>
+    </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            <p>2025 - Кадемський Георгій, ТТП-31</p>
-        </div>
-    </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    @section Scripts {
+        <script>
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        </script>
+    }
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

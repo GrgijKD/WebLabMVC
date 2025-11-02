@@ -12,7 +12,7 @@ namespace WebLabMVC.Models
 
         public string? Country { get; set; }
 
-        public ICollection<Genre> Genres { get; set; } = [];
-        public ICollection<Book> Books { get; set; } = [];
+        public ICollection<Book> Books { get; set; } = new List<Book>();
+        public ICollection<Genre> Genres { get; set; } = new List<Genre>();
     }
 }

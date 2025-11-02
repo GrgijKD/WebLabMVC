@@ -28,16 +28,16 @@ namespace WebLabMVC.Controllers
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var genre = await _context.Genres
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(g => g.Books)
+                    .ThenInclude(b => b.Authors)
+                .Include(g => g.Authors)
+                .FirstOrDefaultAsync(g => g.Id == id);
+
             if (genre == null)
-            {
                 return NotFound();
-            }
 
             return View(genre);
         }

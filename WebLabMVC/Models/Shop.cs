@@ -19,6 +19,6 @@ namespace WebLabMVC.Models
         [Required(ErrorMessage = "Заповніть це поле")]
         public required string Longitude { get; set; }
 
-        public ICollection<Book> Books { get; set; } = [];
+        public ICollection<Book> Books { get; set; } = new List<Book>();
     }
 }
