@@ -17,7 +17,17 @@ namespace WebLabMVC.Controllers
         // GET: Shops
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Shops.ToListAsync());
+            var books = await _context.Books
+                .Select(b => new { b.Id, b.Title })
+                .ToListAsync();
+
+            ViewBag.Books = new SelectList(books, "Id", "Title");
+
+            var shops = await _context.Shops
+            .Include(s => s.Books)
+            .ToListAsync();
+
+            return View(shops);
         }
 
         // GET: Shops/Details/5

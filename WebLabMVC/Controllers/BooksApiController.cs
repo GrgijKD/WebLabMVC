@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using WebLabMVC.Models;
 
@@ -15,33 +16,30 @@ public class BooksApiController : ControllerBase
     }
 
     // GET: api/Books
+    [EnableQuery]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<BookDto>>> GetBook()
+    public IQueryable<BookDto> GetBooks()
     {
-        var books = await _context.Books
+        return _context.Books
             .Include(b => b.Publisher)
             .Include(b => b.Authors)
             .Include(b => b.Genres)
             .Include(b => b.Shops)
-            .ToListAsync();
-
-        var dto = books.Select(b => new BookDto
-        {
-            Id = b.Id,
-            Title = b.Title,
-            Price = b.Price,
-            CoverUrl = b.CoverUrl,
-            PublisherId = b.PublisherId,
-            Publisher = b.Publisher?.Name,
-            AuthorIds = b.Authors?.Select(a => a.Id).ToArray(),
-            GenreIds = b.Genres?.Select(g => g.Id).ToArray(),
-            ShopIds = b.Shops?.Select(s => s.Id).ToArray(),
-            Authors = b.Authors?.Select(a => a.FullName).ToList(),
-            Genres = b.Genres?.Select(g => g.Name).ToList(),
-            Shops = b.Shops?.Select(s => s.Name).ToList()
-        });
-
-        return Ok(dto);
+            .Select(b => new BookDto
+            {
+                Id = b.Id,
+                Title = b.Title,
+                Price = b.Price,
+                CoverUrl = b.CoverUrl,
+                PublisherId = b.PublisherId,
+                Publisher = b.Publisher != null ? b.Publisher.Name : null,
+                AuthorIds = b.Authors.Select(a => a.Id).ToArray(),
+                GenreIds = b.Genres.Select(g => g.Id).ToArray(),
+                ShopIds = b.Shops.Select(s => s.Id).ToArray(),
+                Authors = b.Authors.Select(a => a.FullName).ToList(),
+                Genres = b.Genres.Select(g => g.Name).ToList(),
+                Shops = b.Shops.Select(s => s.Name).ToList()
+            });
     }
 
     // GET: api/Books/5
@@ -65,13 +63,13 @@ public class BooksApiController : ControllerBase
             Price = book.Price,
             CoverUrl = book.CoverUrl,
             PublisherId = book.PublisherId,
-            Publisher = book.Publisher?.Name ?? "Не вказано",
-            AuthorIds = book.Authors?.Select(a => a.Id).ToArray(),
-            GenreIds = book.Genres?.Select(g => g.Id).ToArray(),
-            ShopIds = book.Shops?.Select(s => s.Id).ToArray(),
-            Authors = book.Authors?.Select(a => a.FullName).ToList(),
-            Genres = book.Genres?.Select(g => g.Name).ToList(),
-            Shops = book.Shops?.Select(s => s.Name).ToList()
+            Publisher = book.Publisher?.Name,
+            AuthorIds = book.Authors.Select(a => a.Id).ToArray(),
+            GenreIds = book.Genres.Select(g => g.Id).ToArray(),
+            ShopIds = book.Shops.Select(s => s.Id).ToArray(),
+            Authors = book.Authors.Select(a => a.FullName).ToList(),
+            Genres = book.Genres.Select(g => g.Name).ToList(),
+            Shops = book.Shops.Select(s => s.Name).ToList()
         };
 
         return Ok(dto);

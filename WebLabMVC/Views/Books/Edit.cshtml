@@ -20,14 +20,14 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Genres" class="control-label">Жанр (можна декілька)</label>
+                <label asp-for="Genres" class="control-label">Жанр*</label>
                 <select asp-for="Genres" class="form-control" asp-items="ViewBag.Genres" multiple="multiple"></select>
                 <span asp-validation-for="Genres" class="text-danger"></span>
                 <a class="btn btn-sm btn-primary mt-1" href="/Genres/Create">Додати жанр</a>
             </div>
 
             <div class="form-group">
-                <label asp-for="Authors" class="control-label">Автор (можна декілька)</label>
+                <label asp-for="Authors" class="control-label">Автор*</label>
                 <select asp-for="Authors" class="form-control" asp-items="ViewBag.Authors" multiple="multiple"></select>
                 <span asp-validation-for="Authors" class="text-danger"></span>
                 <a class="btn btn-sm btn-primary mt-1" href="/Authors/Create">Додати автора</a>
@@ -40,17 +40,28 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="CoverUrl" class="control-label d-block">Обкладинка (зображення)</label>
-                <label for="CoverFile" class="btn btn-outline-primary">Вибрати файл</label>
-                <input asp-for="CoverUrl" id="CoverFile" type="file" name="CoverFile" style="display:none;" />
-                <span id="file-name" class="ms-2 text-muted">Файл не вибрано</span>
+                <label class="control-label d-block" for="coverFile">Обкладинка (зображення)</label>
+                <div class="input-group mb-2">
+                    <label for="coverFile" class="btn btn-outline-primary mb-0">
+                        Вибрати файл
+                    </label>
+                    <input id="coverFile" name="coverFile" type="file" style="display:none;" />
+                    <span id="file-name" class="ms-2 text-muted align-self-center">Файл не вибрано</span>
+                    <button type="button" id="pickFromDriveBtn" class="btn btn-outline-success ms-2">
+                        З Google Drive
+                    </button>
+                </div>
                 <span asp-validation-for="CoverUrl" class="text-danger"></span>
                 @if (!string.IsNullOrEmpty(Model.CoverUrl))
                 {
                     <div class="mt-2">
                         <p>Поточна обкладинка:</p>
-                        <img src="@Model.CoverUrl" alt="Обкладинка" style="max-width:200px;" />
+                        <img id="preview" src="@Model.CoverUrl" alt="Обкладинка" style="max-width:200px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.2);" />
                     </div>
+                }
+                else
+                {
+                    <img id="preview" src="/images/covers/default.jpg" alt="Обкладинка" style="max-width:200px;" />
                 }
             </div>
 
@@ -62,11 +73,22 @@
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                <label asp-for="Shops" class="control-label">Магазин*</label>
+                <select asp-for="Shops" class="form-control" asp-items="ViewBag.Shops" multiple="multiple"></select>
+                <span asp-validation-for="Shops" class="text-danger"></span>
+                <a class="btn btn-sm btn-primary mt-1" href="/Shops/Create">Додати магазин</a>
+            </div>
+
             <div class="form-group mt-3">
                 <input type="submit" value="Зберегти" class="btn btn-success" />
             </div>
         </form>
     </div>
+</div>
+
+<div>
+    <p>*Можна обрати декілька авторів/жанрів/магазинів або прибрати обрані за допомогою ЛКМ+Ctrl</p>
 </div>
 
 <div>
@@ -76,13 +98,88 @@
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
     <script>
-        $("#CoverFile").change(function () {
+        const CLIENT_ID = "14201866303-5jtu2ldu4mokqmnc37bm4a977eu01g2m.apps.googleusercontent.com";
+        const API_KEY = "AIzaSyA2kll5m1WjCpDgoD4RBTHxhRpj_jVDJh0";
+        const SCOPES = "https://www.googleapis.com/auth/drive.readonly";
+        let oauthToken;
+        let tokenClient;
+
+        $("#coverFile").change(function () {
             const file = this.files[0];
             $("#file-name").text(file ? file.name : "Файл не вибрано");
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => $("#preview").attr("src", e.target.result);
+                reader.readAsDataURL(file);
+            } else {
+                $("#preview").attr("src", "/images/covers/default.jpg");
+            }
         });
 
-        $("#PriceInput").keypress(function (e) {
+        function loadPickerApi() {
+            gapi.load("picker", () => {
+                tokenClient = google.accounts.oauth2.initTokenClient({
+                    client_id: CLIENT_ID,
+                    scope: SCOPES,
+                    callback: (tokenResponse) => {
+                        oauthToken = tokenResponse.access_token;
+                        createPicker();
+                    },
+                });
+                tokenClient.requestAccessToken();
+            });
+        }
+
+        function createPicker() {
+            if (!oauthToken) return;
+
+            const view = new google.picker.View(google.picker.ViewId.DOCS_IMAGES);
+            const picker = new google.picker.PickerBuilder()
+                .addView(view)
+                .setOAuthToken(oauthToken)
+                .setDeveloperKey(API_KEY)
+                .setCallback(pickerCallback)
+                .build();
+            picker.setVisible(true);
+        }
+
+        async function pickerCallback(data) {
+            if (data.action === google.picker.Action.PICKED) {
+                const fileId = data.docs[0].id;
+                const fileName = data.docs[0].name;
+
+                try {
+                    const response = await fetch(`https://www.googleapis.com/drive/v3/files/${fileId}?alt=media`, {
+                        headers: { Authorization: `Bearer ${oauthToken}` },
+                    });
+
+                    const blob = await response.blob();
+                    const file = new File([blob], fileName, { type: blob.type });
+
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    const fileInput = document.getElementById("coverFile");
+                    fileInput.files = dataTransfer.files;
+
+                    $("#file-name").text(fileName + " (з Google Drive)");
+                    const reader = new FileReader();
+                    reader.onload = (e) => $("#preview").attr("src", e.target.result);
+                    reader.readAsDataURL(file);
+                } catch (err) {
+                    console.error("Помилка при завантаженні з Drive:", err);
+                    alert("Не вдалося завантажити файл із Google Drive.");
+                }
+            }
+        }
+
+        $("#pickFromDriveBtn").click(loadPickerApi);
+
+        $("#Price").keypress(function (e) {
             var char = String.fromCharCode(e.which);
             var value = $(this).val();
 
@@ -95,6 +192,20 @@
             }
 
             return false;
+        });
+
+        $(document).ready(function () {
+            $.validator.addMethod("pricevalid", function (value, element) {
+                if (!value) return false;
+                var val = value.replace(',', '.');
+                var price = parseFloat(val);
+                return !isNaN(price) && price >= 0.01 && price <= 999999.99;
+            }, "Ціна має бути від 0.01 до 999999.99");
+
+            $("#Price").rules("add", {
+                required: true,
+                pricevalid: true
+            });
         });
     </script>
 }

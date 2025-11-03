@@ -291,3 +291,8 @@ C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\bin\Debug
 C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\obj\Debug\net8.0\WebLabMVC.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\bin\Debug\net8.0\Microsoft.AspNetCore.OData.dll
+C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\bin\Debug\net8.0\Microsoft.OData.Core.dll
+C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\bin\Debug\net8.0\Microsoft.OData.Edm.dll
+C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\bin\Debug\net8.0\Microsoft.OData.ModelBuilder.dll
+C:\Users\User\Загрузки\Универ\Веб\WebLabMVC\WebLabMVC\bin\Debug\net8.0\Microsoft.Spatial.dll

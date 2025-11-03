@@ -21,9 +21,13 @@ public class PublishersApiController : ControllerBase
         {
             Id = p.Id,
             Name = p.Name,
-            Country = p.Country,
-            Books = p.Books.Select(b => new BookShortDto { Id = b.Id, Title = b.Title }).ToList()
-        });
+            Country = p.Country ?? "Не вказано",
+            Books = p.Books?.Select(b => new BookShortDto
+            {
+                Id = b.Id,
+                Title = b.Title
+            }).ToList()
+        }).ToList();
 
         return Ok(dtoList);
     }
@@ -43,8 +47,12 @@ public class PublishersApiController : ControllerBase
         {
             Id = publisher.Id,
             Name = publisher.Name,
-            Country = publisher.Country,
-            Books = publisher.Books.Select(b => new BookShortDto { Id = b.Id, Title = b.Title }).ToList()
+            Country = publisher.Country ?? "Не вказано",
+            Books = publisher.Books?.Select(b => new BookShortDto
+            {
+                Id = b.Id,
+                Title = b.Title
+            }).ToList()
         };
 
         return Ok(dto);

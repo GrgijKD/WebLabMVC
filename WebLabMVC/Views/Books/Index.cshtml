@@ -19,6 +19,7 @@
             <th>Видавництво</th>
             <th>Обкладинка</th>
             <th>Ціна</th>
+            <th>Магазини</th>
             <th></th>
         </tr>
     </thead>
@@ -66,6 +67,17 @@
                 <td>@item.Price ₴</td>
 
                 <td>
+                    @if (item.Shops != null && item.Shops.Any())
+                    {
+                        @string.Join(", ", item.Shops.Select(s => s.Address))
+                    }
+                    else
+                    {
+                        <span>Не вказано</span>
+                    }
+                </td>
+
+                <td>
                     <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Детальніше</a>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Редагувати</a>
                     <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Видалити</a>
@@ -74,3 +86,43 @@
         }
     </tbody>
 </table>
+
+<h2>Розподіл книг по жанрах</h2>
+@{
+    var genreLabels = (ViewData["GenreLabels"] as string[])?.ToList() ?? new List<string>();
+    var genreCounts = (ViewData["GenreCounts"] as int[])?.ToList() ?? new List<int>();
+}
+
+<canvas id="genreChart" width="300" height="300"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('genreChart').getContext('2d');
+
+            const genreChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(genreLabels)),
+                    datasets: [{
+                        data: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(genreCounts)),
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)'
+                        ],
+                        borderColor: 'rgba(255,255,255,1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: false
+                }
+            });
+        });
+    </script>
+}

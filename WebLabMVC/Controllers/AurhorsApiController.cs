@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using WebLabMVC.Models;
 
@@ -9,32 +10,32 @@ public class AuthorsApiController : ControllerBase
     private readonly ApplicationDbContext _context;
     public AuthorsApiController(ApplicationDbContext context) => _context = context;
 
+    // GET: api/Authors
+    [EnableQuery]
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<AuthorDto>>> GetAuthors()
+    public IQueryable<AuthorDto> GetAuthors()
     {
-        var authors = await _context.Authors
+        return _context.Authors
             .Include(a => a.Books)
             .Include(a => a.Genres)
-            .ToListAsync();
-
-        var dto = authors.Select(a => new AuthorDto
-        {
-            Id = a.Id,
-            FullName = a.FullName,
-            Country = a.Country,
-            Books = a.Books.Select(b => new BookShortDto
+            .Select(a => new AuthorDto
             {
-                Id = b.Id,
-                Title = b.Title
-            }).ToList(),
-            Genres = a.Genres.Select(g => new GenreShortDto
-            {
-                Id = g.Id,
-                Name = g.Name
-            }).ToList()
-        });
+                Id = a.Id,
+                FullName = a.FullName,
+                Country = a.Country ?? "Не вказано",
 
-        return Ok(dto);
+                Books = a.Books.Select(b => new BookShortDto
+                {
+                    Id = b.Id,
+                    Title = b.Title
+                }).ToList(),
+
+                Genres = a.Genres.Select(g => new GenreShortDto
+                {
+                    Id = g.Id,
+                    Name = g.Name
+                }).ToList()
+            });
     }
 
     // GET: api/Authors/5
@@ -53,12 +54,14 @@ public class AuthorsApiController : ControllerBase
         {
             Id = author.Id,
             FullName = author.FullName,
-            Country = author.Country,
+            Country = author.Country ?? "Не вказано",
+
             Books = author.Books.Select(b => new BookShortDto
             {
                 Id = b.Id,
                 Title = b.Title
             }).ToList(),
+
             Genres = author.Genres.Select(g => new GenreShortDto
             {
                 Id = g.Id,

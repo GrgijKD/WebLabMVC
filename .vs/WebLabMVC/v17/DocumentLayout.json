@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\controllers\\shopsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\controllers\\shopsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\views\\books\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\views\\books\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\controllers\\publishersapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\controllers\\publishersapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\views\\books\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\views\\books\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\controllers\\genresapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\controllers\\genresapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\views\\shops\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\views\\shops\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|c:\\users\\user\\\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0443\u043D\u0438\u0432\u0435\u0440\\\u0432\u0435\u0431\\weblabmvc\\weblabmvc\\controllers\\shopscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{200F7775-753B-4786-B5E4-7C6B44222030}|WebLabMVC\\WebLabMVC.csproj|solutionrelative:weblabmvc\\controllers\\shopscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +30,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ShopsApiController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\ShopsApiController.cs",
-              "RelativeDocumentMoniker": "WebLabMVC\\Controllers\\ShopsApiController.cs",
-              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\ShopsApiController.cs",
-              "RelativeToolTip": "WebLabMVC\\Controllers\\ShopsApiController.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAhwFAAAAAnAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "BooksController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\BooksController.cs",
+              "RelativeDocumentMoniker": "WebLabMVC\\Controllers\\BooksController.cs",
+              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\BooksController.cs",
+              "RelativeToolTip": "WebLabMVC\\Controllers\\BooksController.cs",
+              "ViewState": "AgIAAN0AAAAAAAAAAAAQwOMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T15:46:35.675Z",
+              "WhenOpened": "2025-11-03T11:47:10.436Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PublishersApiController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\PublishersApiController.cs",
-              "RelativeDocumentMoniker": "WebLabMVC\\Controllers\\PublishersApiController.cs",
-              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\PublishersApiController.cs",
-              "RelativeToolTip": "WebLabMVC\\Controllers\\PublishersApiController.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAhwEUAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T15:45:59.771Z",
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Views\\Books\\Edit.cshtml",
+              "RelativeDocumentMoniker": "WebLabMVC\\Views\\Books\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Views\\Books\\Edit.cshtml",
+              "RelativeToolTip": "WebLabMVC\\Views\\Books\\Edit.cshtml",
+              "ViewState": "AgIAACMAAAAAAAAAAAAQwCkAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-03T11:44:03.336Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GenresApiController.cs",
-              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\GenresApiController.cs",
-              "RelativeDocumentMoniker": "WebLabMVC\\Controllers\\GenresApiController.cs",
-              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\GenresApiController.cs",
-              "RelativeToolTip": "WebLabMVC\\Controllers\\GenresApiController.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAhwEcAAAAeAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Views\\Books\\Create.cshtml",
+              "RelativeDocumentMoniker": "WebLabMVC\\Views\\Books\\Create.cshtml",
+              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Views\\Books\\Create.cshtml",
+              "RelativeToolTip": "WebLabMVC\\Views\\Books\\Create.cshtml",
+              "ViewState": "AgIAACIAAAAAAAAAAAAowDIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-03T11:38:58.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ShopsController.cs",
+              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\ShopsController.cs",
+              "RelativeDocumentMoniker": "WebLabMVC\\Controllers\\ShopsController.cs",
+              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Controllers\\ShopsController.cs",
+              "RelativeToolTip": "WebLabMVC\\Controllers\\ShopsController.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB0AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T15:45:20.629Z",
+              "WhenOpened": "2025-11-03T10:48:42.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Views\\Shops\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebLabMVC\\Views\\Shops\\Index.cshtml",
+              "ToolTip": "C:\\Users\\User\\\u0417\u0430\u0433\u0440\u0443\u0437\u043A\u0438\\\u0423\u043D\u0438\u0432\u0435\u0440\\\u0412\u0435\u0431\\WebLabMVC\\WebLabMVC\\Views\\Shops\\Index.cshtml",
+              "RelativeToolTip": "WebLabMVC\\Views\\Shops\\Index.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAQwDEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-03T10:48:36.966Z",
               "EditorCaption": ""
             }
           ]

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using WebLabMVC.Models;
 
@@ -10,23 +11,28 @@ public class GenresApiController : ControllerBase
     public GenresApiController(ApplicationDbContext context) => _context = context;
 
     // GET: api/Genres
+    [EnableQuery]
     [HttpGet]
-    public async Task<IActionResult> GetGenres()
+    public IQueryable<GenreDto> GetGenres()
     {
-        var genres = await _context.Genres
+        return _context.Genres
             .Include(g => g.Books)
             .Include(g => g.Authors)
-            .ToListAsync();
-
-        var dtoList = genres.Select(g => new GenreDto
-        {
-            Id = g.Id,
-            Name = g.Name,
-            Books = g.Books.Select(b => new BookShortDto { Id = b.Id, Title = b.Title }).ToList(),
-            Authors = g.Authors.Select(a => new AuthorShortDto { Id = a.Id, FullName = a.FullName }).ToList()
-        });
-
-        return Ok(dtoList);
+            .Select(g => new GenreDto
+            {
+                Id = g.Id,
+                Name = g.Name,
+                Books = g.Books.Select(b => new BookShortDto
+                {
+                    Id = b.Id,
+                    Title = b.Title
+                }).ToList(),
+                Authors = g.Authors.Select(a => new AuthorShortDto
+                {
+                    Id = a.Id,
+                    FullName = a.FullName
+                }).ToList()
+            });
     }
 
     // GET: api/Genres/5
@@ -45,8 +51,16 @@ public class GenresApiController : ControllerBase
         {
             Id = genre.Id,
             Name = genre.Name,
-            Books = genre.Books.Select(b => new BookShortDto { Id = b.Id, Title = b.Title }).ToList(),
-            Authors = genre.Authors.Select(a => new AuthorShortDto { Id = a.Id, FullName = a.FullName }).ToList()
+            Books = genre.Books.Select(b => new BookShortDto
+            {
+                Id = b.Id,
+                Title = b.Title
+            }).ToList(),
+            Authors = genre.Authors.Select(a => new AuthorShortDto
+            {
+                Id = a.Id,
+                FullName = a.FullName
+            }).ToList()
         };
 
         return Ok(dto);

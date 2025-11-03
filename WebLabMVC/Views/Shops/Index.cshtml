@@ -35,3 +35,80 @@
 }
     </tbody>
 </table>
+
+<div class="mb-3">
+    <label for="bookSelect" class="form-label">Виберіть книгу</label>
+    <select id="bookSelect" class="form-select">
+        <option value="">Не вибрано</option>
+        @foreach (var book in ViewBag.Books as SelectList)
+        {
+            <option value="@book.Value">@book.Text</option>
+        }
+    </select>
+</div>
+
+<p id="noBookMessage" class="text-danger fw-bold"></p>
+
+<div id="map" style="height: 400px; width: 100%;"></div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        const shops = @Html.Raw(Json.Serialize(Model.Select(s => new {
+            s.Id,
+            s.Name,
+            s.Address,
+            s.Latitude,
+            s.Longitude,
+            BookIds = s.Books.Select(b => b.Id).ToList()
+        })));
+
+        const map = L.map('map').setView([48.3794, 31.1656], 6); // Ukraine
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        let markers = [];
+
+        function updateMap(bookId) {
+                markers.forEach(m => map.removeLayer(m));
+                markers = [];
+
+                const filteredShops = bookId
+                    ? shops.filter(s => s.bookIds.includes(parseInt(bookId)))
+                    : shops;
+
+                if (filteredShops.length > 0) {
+                    filteredShops.forEach(shop => {
+                        const lat = parseFloat(shop.latitude?.toString().replace(',', '.'));
+                        const lng = parseFloat(shop.longitude?.toString().replace(',', '.'));
+
+                        if (!isNaN(lat) && !isNaN(lng)) {
+                            const marker = L.marker([lat, lng])
+                                .bindPopup(`<b>${shop.name}</b>`);
+                            marker.addTo(map);
+                            markers.push(marker);
+                        } else {
+                            console.warn("Некоректні координати магазину:", shop);
+                        }
+                    });
+
+                    const group = new L.featureGroup(markers);
+                    map.fitBounds(group.getBounds().pad(0.2));
+
+                    document.getElementById('noBookMessage').textContent = '';
+                } else {
+                    document.getElementById('noBookMessage').textContent = 'Цієї книги немає в наявності';
+                }
+            }
+
+
+        document.getElementById('bookSelect').addEventListener('change', function() {
+            updateMap(this.value);
+        });
+
+        updateMap(null);
+    </script>
+}

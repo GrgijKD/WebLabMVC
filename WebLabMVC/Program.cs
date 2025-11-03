@@ -1,8 +1,9 @@
 using System.Globalization;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using WebLabMVC.Models;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,9 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         options.JsonSerializerOptions.WriteIndented = true;
     });
+
+builder.Services.AddControllers().AddOData(options =>
+    options.Select().Filter().OrderBy().Count().SetMaxTop(null).SkipToken().Expand());
 
 var app = builder.Build();
 

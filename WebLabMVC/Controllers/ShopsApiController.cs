@@ -24,8 +24,12 @@ public class ShopsApiController : ControllerBase
             Address = s.Address,
             Latitude = s.Latitude,
             Longitude = s.Longitude,
-            Books = s.Books.Select(b => new BookShortDto { Id = b.Id, Title = b.Title }).ToList()
-        });
+            Books = s.Books?.Select(b => new BookShortDto
+            {
+                Id = b.Id,
+                Title = b.Title
+            }).ToList()
+        }).ToList();
 
         return Ok(dtoList);
     }
@@ -48,7 +52,11 @@ public class ShopsApiController : ControllerBase
             Address = shop.Address,
             Latitude = shop.Latitude,
             Longitude = shop.Longitude,
-            Books = shop.Books.Select(b => new BookShortDto { Id = b.Id, Title = b.Title }).ToList()
+            Books = shop.Books?.Select(b => new BookShortDto
+            {
+                Id = b.Id,
+                Title = b.Title
+            }).ToList()
         };
 
         return Ok(dto);

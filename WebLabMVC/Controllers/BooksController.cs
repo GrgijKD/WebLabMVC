@@ -24,7 +24,21 @@ namespace WebLabMVC.Controllers
                 .Include(b => b.Publisher)
                 .Include(b => b.Authors)
                 .Include(b => b.Genres)
+                .Include(b => b.Shops)
                 .ToListAsync();
+
+            var data = await _context.Genres
+                .Include(g => g.Books)
+                .Select(g => new
+                {
+                    GenreName = g.Name,
+                    BookCount = g.Books.Count
+                })
+                .ToListAsync();
+
+            ViewData["GenreLabels"] = data.Select(d => d.GenreName).ToArray();
+            ViewData["GenreCounts"] = data.Select(d => d.BookCount).ToArray();
+
             return View(books);
         }
 
@@ -75,10 +89,14 @@ namespace WebLabMVC.Controllers
 
                 book.CoverUrl = $"/images/covers/{fileName}";
             }
-            else
+            else if (!string.IsNullOrEmpty(book.CoverUrl) && book.CoverUrl.StartsWith("http"))
+            {
+            }
+            else if (string.IsNullOrEmpty(book.CoverUrl))
             {
                 book.CoverUrl = "/images/covers/default.jpg";
             }
+
 
             if (!decimal.TryParse(book.Price.Replace(',', '.'), NumberStyles.Any, CultureInfo.InvariantCulture, out var price)
                 || price < 0.01M || price > 999999.99M)
@@ -133,6 +151,21 @@ namespace WebLabMVC.Controllers
                     publisher.Books.Add(book);
             }
 
+            if (book.Shops != null && book.Shops.Any())
+            {
+                foreach (var shop in book.Shops)
+                {
+                    var existingShop = await _context.Shops
+                        .Include(s => s.Books)
+                        .FirstOrDefaultAsync(s => s.Id == shop.Id);
+
+                    if (existingShop != null && !existingShop.Books.Contains(book))
+                    {
+                        existingShop.Books.Add(book);
+                    }
+                }
+            }
+
             _context.Add(book);
             await _context.SaveChangesAsync();
             await SyncAuthorGenres();
@@ -148,6 +181,7 @@ namespace WebLabMVC.Controllers
             var book = await _context.Books
                 .Include(b => b.Authors)
                 .Include(b => b.Genres)
+                .Include(b => b.Shops)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
             if (book == null) return NotFound();
@@ -159,7 +193,7 @@ namespace WebLabMVC.Controllers
         // POST: Books/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Book book, IFormFile? coverFile, int[] Authors, int[] Genres)
+        public async Task<IActionResult> Edit(int id, Book book, IFormFile? coverFile, int[] Authors, int[] Genres, int[] Shops)
         {
             if (id != book.Id)
                 return NotFound();
@@ -174,6 +208,7 @@ namespace WebLabMVC.Controllers
                 .Include(b => b.Authors)
                 .Include(b => b.Genres)
                 .Include(b => b.Publisher)
+                .Include(b => b.Shops)
                 .FirstOrDefaultAsync(b => b.Id == id);
 
             if (existingBook == null)
@@ -204,6 +239,15 @@ namespace WebLabMVC.Controllers
 
                 existingBook.CoverUrl = $"/images/covers/{fileName}";
             }
+            else if (!string.IsNullOrEmpty(book.CoverUrl) && book.CoverUrl.StartsWith("http"))
+            {
+                existingBook.CoverUrl = book.CoverUrl;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(existingBook.CoverUrl))
+                    existingBook.CoverUrl = "/images/covers/default.jpg";
+            }
 
             var selectedAuthors = Authors?.Length > 0
                 ? await _context.Authors
@@ -219,8 +263,16 @@ namespace WebLabMVC.Controllers
                     .ToListAsync()
                 : new List<Genre>();
 
+            var selectedShops = Shops?.Length > 0
+                ? await _context.Shops
+                    .Where(s => Shops.Contains(s.Id))
+                    .Include(s => s.Books)
+                    .ToListAsync()
+                : new List<Shop>();
+
             existingBook.Authors = selectedAuthors;
             existingBook.Genres = selectedGenres;
+            existingBook.Shops = selectedShops;
 
             foreach (var author in selectedAuthors)
             {
@@ -299,6 +351,11 @@ namespace WebLabMVC.Controllers
                 _context.Genres.OrderBy(g => g.Name),
                 "Id", "Name",
                 book.Genres?.Select(g => g.Id));
+
+            ViewBag.Shops = new MultiSelectList(
+                _context.Shops.OrderBy(s => s.Name),
+                "Id", "Name",
+                book.Shops?.Select(s => s.Id));
         }
 
         private async Task SyncAuthorGenres()

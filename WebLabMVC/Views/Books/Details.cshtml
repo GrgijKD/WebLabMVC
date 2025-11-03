@@ -1,7 +1,13 @@
 ﻿@model WebLabMVC.Models.Book
 
 @{
-    ViewData["Title"] = "Деталі книги";
+    ViewData["Title"] = $"{Model.Title}";
+    var metaDescription = $"Деталі книги {Model.Title}, автор(и): {string.Join(", ", Model.Authors.Select(a => a.FullName))}, жанр(и): {string.Join(", ", Model.Genres.Select(g => g.Name))}, ціна: {Model.Price} ₴";
+}
+
+@section HeadContent {
+    <meta name="description" content="@metaDescription" />
+    <meta name="keywords" content="@Model.Title, @string.Join(", ", Model.Authors.Select(a => a.FullName)), @string.Join(", ", Model.Genres.Select(g => g.Name))" />
 }
 
 <div class="container mt-5">
@@ -9,7 +15,7 @@
         <div class="card shadow-lg border-0">
             <div class="card-body p-4">
                 <h1 class="display-5 fw-bold mb-4">@Model.Title</h1>
-                <img src="@Model.CoverUrl" alt="Обкладинка книги" class="img-fluid" style="max-height: 400px;">
+                <img src="@Model.CoverUrl" alt="Обкладинка книги @Model.Title" class="img-fluid" style="max-height: 400px;">
                 <p class="mt-3 fs-4 text-muted">Ціна: <strong class="text-dark">@Model.Price ₴</strong></p>
             </div>
         </div>
@@ -52,7 +58,7 @@
             </div>
 
             <div class="col-md-6 text-center">
-                <img src="@Model.CoverUrl" alt="Обкладинка" class="img-fluid mt-3" style="max-height: 350px;">
+                <img src="@Model.CoverUrl" alt="Обкладинка книги @Model.Title" class="img-fluid mt-3" style="max-height: 350px;">
             </div>
         </div>
     </section>
@@ -68,7 +74,7 @@
                         <div class="card shadow-sm border-0 h-100">
                             <div class="card-body">
                                 <h5 class="card-title">@shop.Name</h5>
-                                <p class="card-text text-muted">Координати: @shop.Latitude, @shop.Longitude</p>
+                                <p class="card-text text-muted">Адреса: @shop.Address</p>
                             </div>
                         </div>
                     </div>
@@ -87,3 +93,26 @@
         <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Видалити</a>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        var bookSchema = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(new {
+            @context = "https://schema.org",
+            @type = "Book",
+            name = Model.Title,
+            author = Model.Authors.Select(a => a.FullName).ToArray(),
+            publisher = Model.Publisher?.Name ?? "Не вказано",
+            genre = Model.Genres.Select(g => g.Name).ToArray(),
+            offers = new {
+                @type = "Offer",
+                price = Model.Price,
+                priceCurrency = "UAH"
+            }
+        }));
+        
+        var script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify(bookSchema);
+        document.head.appendChild(script);
+    </script>
+}
